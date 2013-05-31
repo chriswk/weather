@@ -20,6 +20,10 @@ def readFile(String filename) {
 			}
 			i++
 		}
+		location = ["lat": values.Lat, "lon": values.Lon]
+		values["location"] = location
+		values.remove("Lat")
+		values.remove("Lon")
 		places << values
 	}
 	places
