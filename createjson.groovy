@@ -1,9 +1,9 @@
 @Grab("net.sf.opencsv:opencsv:2.3")
-@Grab("org.elasticsearch:elasticsearch:0.90.1")
 @Grab("org.codehaus.groovy.modules.http-builder:http-builder:0.5.2")
 import au.com.bytecode.opencsv.CSVReader
 import groovyx.net.http.*
-
+import static groovyx.net.http.Method.*
+import static groovyx.net.http.ContentType.*
 
 def readFile(String filename) {
 	char separator = '\t'
@@ -11,9 +11,9 @@ def readFile(String filename) {
 	String[] headers = reader.readNext()
 	List<String[]> entries = reader.readAll()
 	places = []
-	values = [:]
 	entries.collect { line ->
 		int i = 0
+		values = [:]
 		headers.collect { header ->
 			if (i < line.length) {
 				values[header] = line[i]
@@ -29,7 +29,7 @@ def putDocuments(data) {
 	url = "http://localhost:9200/weather/place/"
 	http = new HTTPBuilder(url)
 	data.each { doc ->
-		http.request(POST, json) { req ->
+		http.request(POST, JSON) { req ->
 			body = doc
 			
 			response.success = {resp, json ->
