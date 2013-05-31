@@ -1,6 +1,6 @@
 @Grab("net.sf.opencsv:opencsv:2.3")
 @Grab("org.elasticsearch:elasticsearch:0.90.1")
-@Grap("org.codehaus.groovy.modules.http-builder:http-builder:0.5.2")
+@Grab("org.codehaus.groovy.modules.http-builder:http-builder:0.5.2")
 import au.com.bytecode.opencsv.CSVReader
 import groovyx.net.http.*
 
